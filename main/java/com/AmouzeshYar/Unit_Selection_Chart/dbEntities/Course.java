@@ -21,13 +21,19 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     @Min(value = 1, message = "Minimum credits 1")
     @Max(value = 3, message = "Maximum credits 3")
-    private int credit;
+    @Column(nullable = false)
+    private int unitCode;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private CourseTypeEnum courseType;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prerequest_id")
+    private Course prerequest;
 }
