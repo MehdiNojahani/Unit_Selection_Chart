@@ -4,15 +4,18 @@ import com.AmouzeshYar.Unit_Selection_Chart.projectEnumiration.CourseTypeEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@Builder
 @Entity
 @Table(name = "Course")
 public class Course {
@@ -36,4 +39,11 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prerequest_id")
     private Course prerequest;
+
+    @OneToMany(mappedBy = "course")
+    private List<Curriculum> curriculumList;
+
+    @OneToMany(mappedBy = "course")
+    private List<Transcript> transcriptList;
+
 }

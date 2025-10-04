@@ -1,33 +1,29 @@
 package com.AmouzeshYar.Unit_Selection_Chart.dbEntities;
 
-import com.AmouzeshYar.Unit_Selection_Chart.projectEnumiration.TranscriptStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
 @AllArgsConstructor
+@Setter
 @NoArgsConstructor
 @Getter
-@Setter
 @Data
 @Builder
 @Entity
-public class Transcript {
+public class Curriculum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double grade;
-
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TranscriptStatus transcriptStatus;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id",  nullable = false)
-    private Student student;
+    private int semester;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id",  nullable = false)
     private Course course;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "major_id", nullable = false)
+    private Major major;
 }

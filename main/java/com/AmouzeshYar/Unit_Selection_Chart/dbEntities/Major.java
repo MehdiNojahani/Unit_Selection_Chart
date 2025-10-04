@@ -1,12 +1,10 @@
 package com.AmouzeshYar.Unit_Selection_Chart.dbEntities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,6 +12,8 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
+@Builder
 @Entity
 public class Major {
 
@@ -24,16 +24,8 @@ public class Major {
     private String name;
 
     @OneToMany(mappedBy = "major", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Student>  students = new LinkedHashSet<>();
+    private Set<Student> students;
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Major major)) return false;
-        return Objects.equals(id, major.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
+    @OneToMany(mappedBy = "major")
+    private List<Curriculum> curriculums;
 }
