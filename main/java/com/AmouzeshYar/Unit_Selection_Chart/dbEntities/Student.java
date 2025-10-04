@@ -1,11 +1,10 @@
 package com.AmouzeshYar.Unit_Selection_Chart.dbEntities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -13,28 +12,24 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
+@Data
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false)
     private String fullName;
 
+    @Column(nullable = false,  unique = true)
     private String studentNumber;
 
-
-    @ManyToOne
-    @JoinColumn(name = "major_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "major_id",  nullable = false)
     private Major major;
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Student student)) return false;
-        return Objects.equals(id, student.id);
-    }
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL,  orphanRemoval = true)
+    private List<Transcript> transcripts;
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
 }
