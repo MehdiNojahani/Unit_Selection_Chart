@@ -1,5 +1,6 @@
-package com.AmouzeshYar.Unit_Selection_Chart.dbEntities;
+package com.AmouzeshYar.Unit_Selection_Chart.dbRepository;
 
+import com.AmouzeshYar.Unit_Selection_Chart.dbEntities.Curriculum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
