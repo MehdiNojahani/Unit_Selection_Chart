@@ -22,4 +22,5 @@ public class Curriculum {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "major_id", nullable = false)
     private Major major;
+
 }

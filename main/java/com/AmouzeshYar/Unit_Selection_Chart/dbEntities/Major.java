@@ -24,4 +24,6 @@ public class Major {
 
     @OneToMany(mappedBy = "major", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Curriculum> curriculums;
+
 }
+
