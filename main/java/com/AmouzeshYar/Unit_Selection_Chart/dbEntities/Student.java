@@ -7,12 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
-@Builder
 @Data
 public class Student {
 
@@ -29,7 +25,7 @@ public class Student {
     @JoinColumn(name = "major_id",  nullable = false)
     private Major major;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL,  orphanRemoval = true)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Transcript> transcripts;
 
 }

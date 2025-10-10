@@ -8,12 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
-@Builder
 @Entity
 public class Major {
 
@@ -26,6 +22,6 @@ public class Major {
     @OneToMany(mappedBy = "major", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Student> students;
 
-    @OneToMany(mappedBy = "major")
+    @OneToMany(mappedBy = "major", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Curriculum> curriculums;
 }

@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Data
-@Builder
 @Entity
 @Table(name = "Course")
 public class Course {
@@ -30,7 +26,7 @@ public class Course {
     @Min(value = 1, message = "Minimum credits 1")
     @Max(value = 3, message = "Maximum credits 3")
     @Column(nullable = false)
-    private int unitCode;
+    private Integer unitCode;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -40,10 +36,10 @@ public class Course {
     @JoinColumn(name = "prerequest_id")
     private Course prerequest;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course",  fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Curriculum> curriculumList;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course",  cascade = CascadeType.ALL)
     private List<Transcript> transcriptList;
 
 }

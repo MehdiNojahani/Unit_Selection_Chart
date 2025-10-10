@@ -4,17 +4,13 @@ import com.AmouzeshYar.Unit_Selection_Chart.projectEnumiration.TranscriptStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
 @Data
-@Builder
 @Entity
 public class Transcript {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private double grade;
@@ -23,11 +19,11 @@ public class Transcript {
     @Column(nullable = false)
     private TranscriptStatus transcriptStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id",  nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id",  nullable = false)
+    @JoinColumn(name = "course_id")
     private Course course;
 }

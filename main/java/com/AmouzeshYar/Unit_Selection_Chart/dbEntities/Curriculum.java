@@ -3,23 +3,19 @@ package com.AmouzeshYar.Unit_Selection_Chart.dbEntities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@AllArgsConstructor
-@Setter
-@NoArgsConstructor
-@Getter
+
 @Data
-@Builder
 @Entity
 public class Curriculum {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
     private int semester;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "course_id",  nullable = false)
     private Course course;
 
